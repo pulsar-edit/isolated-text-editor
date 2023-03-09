@@ -2,5 +2,21 @@
   "name": "isolated-text-editor",
   "scripts": {
     "start": "electron start.js"
+  },
+  "dependencies": {
+    "bracket-matcher": "https://github.com/pulsar-edit/bracket-matcher.git#use-napi-oniguruma",
+    "dedent": "^0.7.0",
+    "electron": "20",
+    "etch": "^0.14.1",
+    "event-kit": "^2.5.3",
+    "first-mate": "https://github.com/pulsar-edit/first-mate.git#change-oniguruma",
+    "fs-plus": "^3.1.1",
+    "grim": "^2.0.3",
+    "line-top-index": "^0.3.1",
+    "text-buffer": "https://github.com/pulsar-edit/text-buffer.git#364538fb4",
+    "underscore-plus": "^1.7.0"
+  },
+  "devDependencies": {
+    "electron-rebuild": "^3.2.9"
   }
 }
