@@ -1,0 +1,6 @@
+{
+  "name": "isolated-text-editor",
+  "scripts": {
+    "start": "electron start.js"
+  }
+}
