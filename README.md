@@ -4,9 +4,11 @@ The Pulsar text editor, isolated from all other dependencies
 
 ## Usage:
 
-Install dependencies with pnpm install
+Install dependencies with `pnpm install`
 
-Then run with pnpm start
+Rebuild dependencies for Electron with `npx electron-rebuild`
+
+Then run with `pnpm start`
 
 ## Why?
 
