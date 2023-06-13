@@ -13,7 +13,7 @@
     "fs-plus": "^3.1.1",
     "grim": "^2.0.3",
     "line-top-index": "^0.3.1",
-    "text-buffer": "https://github.com/pulsar-edit/text-buffer.git#c0c7cf3e3",
+    "text-buffer": "https://github.com/pulsar-edit/text-buffer.git#12f7a42da",
     "underscore-plus": "^1.7.0"
   },
   "devDependencies": {
