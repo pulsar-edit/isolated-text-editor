@@ -4,16 +4,16 @@
     "start": "electron start.js"
   },
   "dependencies": {
-    "bracket-matcher": "https://github.com/pulsar-edit/bracket-matcher.git#use-napi-oniguruma",
+    "bracket-matcher": "file:packages/bracket-matcher",
     "dedent": "^0.7.0",
     "electron": "20",
     "etch": "^0.14.1",
     "event-kit": "^2.5.3",
-    "first-mate": "https://github.com/pulsar-edit/first-mate.git#change-oniguruma",
+    "second-mate": "https://github.com/pulsar-edit/second-mate.git#9686771",
     "fs-plus": "^3.1.1",
     "grim": "^2.0.3",
     "line-top-index": "^0.3.1",
-    "text-buffer": "https://github.com/pulsar-edit/text-buffer.git#364538fb4",
+    "text-buffer": "https://github.com/pulsar-edit/text-buffer.git#c0c7cf3e3",
     "underscore-plus": "^1.7.0"
   },
   "devDependencies": {
