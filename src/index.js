@@ -44,12 +44,30 @@ function editorKeyDown(editor) {
       editor.moveDown()
       break;
     case("ArrowLeft"):
-      if(ctrlKey) editor.moveToBeginningOfWord()
-      else editor.moveLeft()
+      if(shiftKey) {
+        if(ctrlKey) {
+          editor.selectToBeginningOfWord();
+        } else {
+          editor.selectLeft();
+        }
+      } else if(ctrlKey) {
+        editor.moveToBeginningOfWord();
+      } else {
+        editor.moveLeft();
+      }
       break;
     case("ArrowRight"):
-      if(ctrlKey) editor.moveToBeginningOfNextWord()
-      else editor.moveRight()
+      if(shiftKey) {
+        if(ctrlKey) {
+          editor.selectToEndOfWord();
+        } else {
+          editor.selectRight();
+        }
+      } else if(ctrlKey) {
+        editor.moveToBeginningOfNextWord();
+      } else {
+        editor.moveRight();
+      }
       break;
     }
   }
@@ -61,5 +79,6 @@ async function main() {
   const pane = document.querySelector('atom-pane')
   editor.element.onkeydown = editorKeyDown(editor)
   pane.appendChild(editor.element)
+  window.editor = editor
 }
 main()
