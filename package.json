@@ -9,10 +9,11 @@
     "electron": "20",
     "etch": "^0.14.1",
     "event-kit": "^2.5.3",
-    "second-mate": "https://github.com/pulsar-edit/second-mate.git#9686771",
     "fs-plus": "^3.1.1",
     "grim": "^2.0.3",
     "line-top-index": "^0.3.1",
+    "second-mate": "https://github.com/pulsar-edit/second-mate.git#9686771",
+    "solid-js": "^1.7.8",
     "text-buffer": "https://github.com/pulsar-edit/text-buffer.git#12f7a42da",
     "underscore-plus": "^1.7.0"
   },
