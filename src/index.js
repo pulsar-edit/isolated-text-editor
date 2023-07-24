@@ -2,6 +2,8 @@ const originalLoad = require('module')._load;
 const { Emitter, Disposable, CompositeDisposable } =  require('event-kit')
 const { Point, Range } =  require('text-buffer')
 
+const {pulsarTextEditor} = require('./text-editor/index');
+
 const myAtomObject = {
   Emitter, Disposable, CompositeDisposable,
   Point, Range
@@ -57,9 +59,10 @@ function editorKeyDown(editor) {
 
 async function main() {
   await superstring
-  const editor = createEditor()
+  // const editor = createEditor()
   const pane = document.querySelector('atom-pane')
-  editor.element.onkeydown = editorKeyDown(editor)
-  pane.appendChild(editor.element)
+  // editor.element.onkeydown = editorKeyDown(editor)
+  // pane.appendChild(editor.element)
+  pulsarTextEditor.default('atom-pane')
 }
 main()
