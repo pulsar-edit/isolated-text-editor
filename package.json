@@ -18,6 +18,9 @@
     "text-buffer": "https://github.com/pulsar-edit/text-buffer.git#12f7a42da",
     "underscore-plus": "^1.7.0"
   },
+  "resolutions": {
+    "pathwatcher": "https://github.com/pulsar-edit/node-pathwatcher#274f870"
+  },
   "devDependencies": {
     "@babel/core": "^7.22.9",
     "babel-loader": "^9.1.3",
