@@ -1,4 +1,4 @@
-// NEW SOLID COMPONENT
+    // NEW SOLID COMPONENT
 
 function HelloWorld() {
     const name = "Solid";
