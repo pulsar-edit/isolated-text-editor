@@ -1,5 +1,7 @@
 /* global ResizeObserver */
 
+const {pulsarTextEditor} = require('./text-editor/index');
+
 const etch = require('etch');
 const { Point, Range } = require('text-buffer');
 const LineTopIndex = require('line-top-index');
@@ -548,26 +550,44 @@ module.exports = class TextEditorComponent {
     if (this.props.model.isMini()) {
       return null;
     } else {
-      return $(GutterContainerComponent, {
-        ref: 'gutterContainer',
+      if(!this.pulsarGutterRendered) {
+        setTimeout(() => {
+          this.setPulsarGutterSignal = pulsarTextEditor.renderGutterContainer(
+            document.querySelector('#gutter-container')
+          )},
+          100
+        )
+        this.pulsarGutterRendered = true
+        console.log("This?", this.setPulsarGutterSignal)
+      }
+      if(this.setPulsarGutterSignal) {
+        this.setPulsarGutterSignal(this.lineNumbersToRender.screenRows)
+      }
+
+      return $.div({
         key: 'gutterContainer',
-        rootComponent: this,
-        hasInitialMeasurements: this.hasInitialMeasurements,
-        measuredContent: this.measuredContent,
-        scrollTop: this.getScrollTop(),
-        scrollHeight: this.getScrollHeight(),
-        lineNumberGutterWidth: this.getLineNumberGutterWidth(),
-        lineHeight: this.getLineHeight(),
-        renderedStartRow: this.getRenderedStartRow(),
-        renderedEndRow: this.getRenderedEndRow(),
-        rowsPerTile: this.getRowsPerTile(),
-        guttersToRender: this.guttersToRender,
-        decorationsToRender: this.decorationsToRender,
-        isLineNumberGutterVisible: this.props.model.isLineNumberGutterVisible(),
-        showLineNumbers: this.showLineNumbers,
-        lineNumbersToRender: this.lineNumbersToRender,
-        didMeasureVisibleBlockDecoration: this.didMeasureVisibleBlockDecoration
+        className: "gutter-container",
+        id: 'gutter-container'
       });
+      // return $(GutterContainerComponent, { ref: 'gutterContainer',
+      //   key: 'gutterContainer',
+      //   rootComponent: this,
+      //   hasInitialMeasurements: this.hasInitialMeasurements,
+      //   measuredContent: this.measuredContent,
+      //   scrollTop: this.getScrollTop(),
+      //   scrollHeight: this.getScrollHeight(),
+      //   lineNumberGutterWidth: this.getLineNumberGutterWidth(),
+      //   lineHeight: this.getLineHeight(),
+      //   renderedStartRow: this.getRenderedStartRow(),
+      //   renderedEndRow: this.getRenderedEndRow(),
+      //   rowsPerTile: this.getRowsPerTile(),
+      //   guttersToRender: this.guttersToRender,
+      //   decorationsToRender: this.decorationsToRender,
+      //   isLineNumberGutterVisible: this.props.model.isLineNumberGutterVisible(),
+      //   showLineNumbers: this.showLineNumbers,
+      //   lineNumbersToRender: this.lineNumbersToRender,
+      //   didMeasureVisibleBlockDecoration: this.didMeasureVisibleBlockDecoration
+      // });
     }
   }
 
@@ -582,7 +602,9 @@ module.exports = class TextEditorComponent {
     };
 
     if (this.hasInitialMeasurements) {
-      style.left = this.getGutterContainerWidth() + 'px';
+      //FIXME: Hardcoded stuff
+      // style.left = this.getGutterContainerWidth() + 'px';
+      style.left = '67px';
       style.width = this.getScrollContainerWidth() + 'px';
     }
 
