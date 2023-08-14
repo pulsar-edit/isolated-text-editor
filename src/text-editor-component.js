@@ -558,10 +558,9 @@ module.exports = class TextEditorComponent {
           100
         )
         this.pulsarGutterRendered = true
-        console.log("This?", this.setPulsarGutterSignal)
       }
       if(this.setPulsarGutterSignal) {
-        this.setPulsarGutterSignal(this.lineNumbersToRender.screenRows)
+        this.setPulsarGutterSignal(this.lineNumbersToRender.bufferRows)
       }
 
       return $.div({
