@@ -13,9 +13,7 @@ function Counter() {
 }
 
 function GutterContainer({rowsToRender: getRowsToRender}) {
-  // FIXME - magic number
-  const gutterHeight = () => getRowsToRender().length * 30
-  console.log("Height", gutterHeight())
+  const gutterHeight = () => getRowsToRender().length * e.getLineHeightInPixels();
   return (
     <div style="will-change: transform; display: flex; transform: translateY(0px);">
       <div class="gutter line-numbers" style={`position: relative; height: ${gutterHeight()}px;`}>
