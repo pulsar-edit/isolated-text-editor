@@ -1,5 +1,6 @@
 import { render } from "solid-js/web";
-import { createSignal, For } from "solid-js";
+import { createStore } from "solid-js/store";
+import { For } from "solid-js";
 
 function Counter() {
   const [count, setCount] = createSignal(0);
@@ -12,8 +13,9 @@ function Counter() {
   );
 }
 
-function GutterContainer({rowsToRender: getRowsToRender}) {
-  const gutterHeight = () => getRowsToRender().length * e.getLineHeightInPixels();
+function GutterContainer({state, textEditor}) {
+  const gutterHeight = () => state.rowsToRender.length * state.lineHeightInPixels
+
   return (
     <div style="will-change: transform; display: flex; transform: translateY(0px);">
       <div class="gutter line-numbers" style={`position: relative; height: ${gutterHeight()}px;`}>
@@ -22,7 +24,7 @@ function GutterContainer({rowsToRender: getRowsToRender}) {
           <div class="icon-right"></div>
         </div>
         <div style={`contain: layout style; position: absolute; top: 0px; height: ${gutterHeight()}px; transform: translateY(0px); width: 67px;`}>
-          <For each={getRowsToRender()}>
+          <For each={state.rowsToRender}>
             {
               (row) =>
                 <div class="line-number" style="width: 67px;">
@@ -37,15 +39,15 @@ function GutterContainer({rowsToRender: getRowsToRender}) {
   );
 }
 
-function renderGutterContainer(element) {
-  const rowsToRender = createSignal([0]);
-  console.log("Created Signal", rowsToRender)
-  render(() => <GutterContainer rowsToRender={rowsToRender[0]} />, element);
-  return rowsToRender[1]
+function renderGutterContainer(element, textEditor) {
+  const store = createStore({
+    rowsToRender: [0],
+    lineHeightInPixels: 0
+  });
+  render(() =>
+    <GutterContainer state={store[0]} />,
+    element);
+  return store[1]
 }
 
-// function renderTextEditor(sel) {
-//   render(() => <Counter />, document.querySelector(sel));
-// }
-//
 export {renderGutterContainer}

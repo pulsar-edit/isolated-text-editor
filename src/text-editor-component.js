@@ -552,15 +552,19 @@ module.exports = class TextEditorComponent {
     } else {
       if(!this.pulsarGutterRendered) {
         setTimeout(() => {
-          this.setPulsarGutterSignal = pulsarTextEditor.renderGutterContainer(
-            document.querySelector('#gutter-container')
-          )},
-          100
-        )
+          this.setGutterState = pulsarTextEditor.renderGutterContainer(
+            document.querySelector('#gutter-container'),
+            this.props.model
+          )
+          // TODO: this is also present on measurements. Check if we need to use
+          // this value, or the measurement one.
+          this.setGutterState("lineHeightInPixels", this.props.model.getLineHeightInPixels())
+        }, 100)
         this.pulsarGutterRendered = true
       }
-      if(this.setPulsarGutterSignal) {
-        this.setPulsarGutterSignal(this.lineNumbersToRender.bufferRows)
+      if(this.setGutterState) {
+        // Initial data for the gutter
+        this.setGutterState("rowsToRender", this.lineNumbersToRender.bufferRows)
       }
 
       return $.div({
@@ -2441,7 +2445,7 @@ module.exports = class TextEditorComponent {
       // case a change in scrollbar visibility causes lines to wrap
       // differently. We capture the renderedStartRow before resetting the
       // display layer because once it has been reset, we can't compute the
-      // rendered start row accurately. 😥
+      // rendered start row accurately. 
       this.populateVisibleRowRange(renderedStartRow);
       this.props.model.setEditorWidthInChars(
         this.getScrollContainerClientWidthInBaseCharacters()
